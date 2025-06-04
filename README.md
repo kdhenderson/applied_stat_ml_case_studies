@@ -31,7 +31,7 @@ applied_stat_ml_case_studies/
     ├── data/                  # Dataset for spam detection
     ├── figures/               # Figures from analysis notebook
     ├── case_study_03_analysis.ipynb  # Jupyter notebook with analysis
-│   ├── case_study_03_analysis.html   # Rendered notebook
+    ├── case_study_03_analysis.html   # Rendered notebook
     ├── case_study_03_report.tex      # LaTeX source for the report
     └── case_study_03_report.pdf      # Compiled report
 ```
