@@ -37,6 +37,7 @@ applied_stat_ml_case_studies/
 │
 ├── case_study_04_xgboost_randomForest_bankruptcy/
 │   ├── data/                  # Financial bankruptcy prediction dataset
+│   ├── figures/               # Figures from analysis 
 │   ├── case_study_04_analysis.ipynb  # Jupyter notebook with analysis
 │   ├── case_study_04_analysis.html   # Rendered notebook
 │   ├── case_study_04_report.tex      # LaTeX source for the report
@@ -46,6 +47,7 @@ applied_stat_ml_case_studies/
 │
 ├── case_study_05_svm_sgd_networkTraffic/
 │   ├── data/                  # Network traffic data for classification
+│   ├── figures/               # Figures from analysis 
 │   ├── case_study_05_analysis.ipynb  # Jupyter notebook with analysis
 │   ├── case_study_05_analysis.html   # Rendered notebook
 │   ├── case_study_05_report.tex      # LaTeX source for the report
@@ -53,6 +55,7 @@ applied_stat_ml_case_studies/
 │
 └──  case_study_06_neuralNetworks_pytorch_hepmass/
     ├── data/                  # HEPMASS dataset for event classification
+    ├── figures/               # Figures from analysis 
     ├── case_study_06_analysis.ipynb  # Jupyter notebook with analysis
     ├── case_study_06_analysis.html   # Rendered notebook
     ├── case_study_06_report.tex      # LaTeX source for the report
