@@ -51,12 +51,13 @@ applied_stat_ml_case_studies/
 │   ├── case_study_05_report.tex      # LaTeX source for the report
 │   └── case_study_05_report.pdf      # Compiled report
 │
-├── case_study_06_neuralNetworks_pytorch_hepmass/
-│   ├── data/                  # HEPMASS dataset for event classification
-│   ├── case_study_06_analysis.ipynb  # Jupyter notebook with analysis
-│   ├── case_study_06_analysis.html   # Rendered notebook
-│   ├── case_study_06_report.tex      # LaTeX source for the report
-│   └── case_study_06_report.pdf      # Compiled report
+└──  case_study_06_neuralNetworks_pytorch_hepmass/
+    ├── data/                  # HEPMASS dataset for event classification
+    ├── case_study_06_analysis.ipynb  # Jupyter notebook with analysis
+    ├── case_study_06_analysis.html   # Rendered notebook
+    ├── case_study_06_report.tex      # LaTeX source for the report
+    └── case_study_06_report.pdf      # Compiled report
+
 ```
 
 ## Data Availability
