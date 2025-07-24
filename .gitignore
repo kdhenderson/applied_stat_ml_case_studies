@@ -51,4 +51,5 @@ Thumbs.db
 *.synctex.gz
 *.toc
 *.fls
-*.fdb_latexmk 
+*.fdb_latexmk
+case_study_06_neuralNetworks_pytorch_hepmass/data/*.csv.gz
