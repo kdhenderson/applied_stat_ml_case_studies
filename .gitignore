@@ -53,3 +53,4 @@ Thumbs.db
 *.fls
 *.fdb_latexmk
 case_study_06_neuralNetworks_pytorch_hepmass/data/*.csv.gz
+case_study_07_classification_anonymousData/data/final_project.csv
