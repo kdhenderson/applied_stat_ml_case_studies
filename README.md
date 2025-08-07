@@ -53,13 +53,22 @@ applied_stat_ml_case_studies/
 │   ├── case_study_05_report.tex      # LaTeX source for the report
 │   └── case_study_05_report.pdf      # Compiled report
 │
-└──  case_study_06_neuralNetworks_pytorch_hepmass/
-    ├── data/                  # HEPMASS dataset for event classification
-    ├── figures/               # Figures from analysis 
-    ├── case_study_06_analysis.ipynb  # Jupyter notebook with analysis
-    ├── case_study_06_analysis.html   # Rendered notebook
-    ├── case_study_06_report.tex      # LaTeX source for the report
-    └── case_study_06_report.pdf      # Compiled report
+├── case_study_06_neuralNetworks_pytorch_hepmass/
+│   ├── data/                  # HEPMASS dataset for event classification
+│   ├── figures/               # Figures from analysis 
+│   ├── case_study_06_analysis.ipynb  # Jupyter notebook with analysis
+│   ├── case_study_06_analysis.html   # Rendered notebook
+│   ├── case_study_06_report.tex      # LaTeX source for the report
+│   └── case_study_06_report.pdf      # Compiled report
+│
+└── case_study_07_xgboost_nn_costSensitive_tunedThresholds/
+    ├── data/                  # Classification dataset with unnamed features
+    ├── case_study_07_analysis.ipynb  # Jupyter notebook with analysis
+    ├── case_study_07_analysis.html   # Rendered notebook
+    ├── case_study_07_report.tex      # LaTeX source for the report
+    ├── case_study_07_report.pdf      # Compiled report
+    ├── best_config.json              # Best model configuration
+    └── tuning_summary.csv            # Model tuning results
 
 ```
 
@@ -72,6 +81,13 @@ applied_stat_ml_case_studies/
 - After downloading, place the files (e.g., `all_train.csv.gz`, `all_test.csv.gz`) in the `case_study_06_neuralNetworks_pytorch_hepmass/data/` directory.
 
 *For more information about the dataset, see the [HEPMASS dataset page](https://archive.ics.uci.edu/dataset/347/hepmass).*
+
+**Case Study 7 Dataset**
+
+- The dataset used in case study 7 (`final_project.csv`) exceeds GitHub's file size limit (136 MB).
+- This dataset contains unnamed features for a binary classification task.
+- If you need access to this dataset for research or educational purposes, please [open an issue](https://github.com/kdhenderson/applied_stat_ml_case_studies/issues/new) in this repository with your request.
+- Please include your intended use case and affiliation in your request.
 
 ## Setup Instructions
 
@@ -135,6 +151,14 @@ applied_stat_ml_case_studies/
    - Regularization techniques (dropout, activation functions)
    - Learning rate scheduling and optimizer selection
    - Model evaluation and generalization to independent test data
+
+7. **Cost-Sensitive Classification with XGBoost and Neural Networks**
+   - Business-driven classification with cost minimization objective
+   - Dataset with unnamed features for binary classification
+   - Implementation of XGBoost and neural network models
+   - Hyperparameter optimization and model selection
+   - Cross-validation with out-of-fold predictions
+   - Threshold tuning to minimize misclassification costs
 
 ## Contributing
 
