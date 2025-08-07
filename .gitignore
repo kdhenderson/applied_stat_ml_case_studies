@@ -52,5 +52,18 @@ Thumbs.db
 *.toc
 *.fls
 *.fdb_latexmk
+
+# Large data files
 case_study_06_neuralNetworks_pytorch_hepmass/data/*.csv.gz
-case_study_07_classification_anonymousData/data/final_project.csv
+
+# PyTorch checkpoints and logs
+case_study_07_xgboost_nn_costSensitive_tunedThresholds/checkpoints/**/*.ckpt
+case_study_07_xgboost_nn_costSensitive_tunedThresholds/logs/**/*
+# Case study 6 checkpoints and logs (if downloaded from Colab/Google Drive)
+case_study_06_neuralNetworks_pytorch_hepmass/checkpoints/**/*
+case_study_06_neuralNetworks_pytorch_hepmass/logs/**/*
+
+# Model predictions
+case_study_07_xgboost_nn_costSensitive_tunedThresholds/oof_preds/*.npz
+# Case study 6 model predictions (if downloaded from Colab/Google Drive)
+case_study_06_neuralNetworks_pytorch_hepmass/oof_preds/*.npz
