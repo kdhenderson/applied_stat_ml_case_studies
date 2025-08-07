@@ -1,0 +1,10 @@
+{
+  "val_auc": 0.9925222123165313,
+  "config": {
+    "lr": 0.0001,
+    "dropout": 0.5,
+    "activation": "SiLU",
+    "batch_size": 2056
+  },
+  "checkpoint": "/Users/kdhenderson/Desktop/currentDesktop/SMU/ds7333_QTW/caseStudy07/checkpoints/config14_fold1/best.ckpt"
+}
