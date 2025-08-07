@@ -55,6 +55,7 @@ Thumbs.db
 
 # Large data files
 case_study_06_neuralNetworks_pytorch_hepmass/data/*.csv.gz
+case_study_07_xgboost_nn_costSensitive_tunedThresholds/data/final_project.csv
 
 # PyTorch checkpoints and logs
 case_study_07_xgboost_nn_costSensitive_tunedThresholds/checkpoints/**/*.ckpt
