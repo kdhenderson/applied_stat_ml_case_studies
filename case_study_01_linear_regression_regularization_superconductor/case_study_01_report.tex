@@ -1,11 +1,11 @@
-\documentclass{article}      % Specifies the document class
+\documentclass{article}
 \usepackage{caption}
 \usepackage[final]{graphicx}
 \usepackage{amsmath}
 \usepackage{placeins}
-\title{Case Study 1: Superconductor Dataset - Prediction of Critical Temperature and Interpretation of Superconducting Material Properties}  % Declares the document's title.
-\author{Kristin Henderson}   % Declares the author's name.
-\date{May 12, 2025}          % Deleting this command produces today's date.
+\title{Case Study 1: Superconductor Dataset - Prediction of Critical Temperature and Interpretation of Superconducting Material Properties}
+\author{Kristin Henderson}
+\date{May 12, 2025 (revised November 2026)}    % Deleting this command produces today's date.
 
 \newcommand{\ip}[2]{(#1, #2)}
                              % Defines \ip{arg1}{arg2} to mean
@@ -21,7 +21,7 @@
 
 This study aims to identify important properties of superconductors, materials that give little or no resistance to electrical current, and to predict the critical temperature at which their superconducting properties operate.
 
-The Superconductivity Dataset is a University of Califonia at Irvine Machine Learning Repository dataset. It contains 21,263 entries consisting of 82 features. The dataset contains two files, one containing material properties, which are numeric features, and the other containing the chemical formula encoded by a vectorized format, with each element represented as a feature and the value being the number of atoms. The target variable is the \emph{superconducting critical temperature} in Kelvin. There is no missing data.
+The Superconductivity Dataset is a University of California at Irvine Machine Learning Repository dataset. It contains 21,263 entries. The dataset contains two files, one containing material properties, which are numeric features, and the other containing the chemical formula encoded by a vectorized format, with each element represented as a feature and the value being the number of atoms. The material properties file has 81 features plus the target, and the formula file has 86 element-count features. The target variable is the \emph{superconducting critical temperature} in Kelvin. There is no missing data.
 
 Table 1 contains the material properties, i.e. the category of features, and their descriptions.
 
@@ -67,13 +67,13 @@ Table 2 lists the statistical metrics for each property of the materials. Each o
     \label{table:statistical_measures}
 \end{table}
 
-A linear regression model is chosen for several reasons. Primarily, it is an appropriate choice with the goal of predicting a continuous variable and having the ability to identify and explain the most important features in determining the critical temperature. Secondarily, a linear model is a good choice for computational efficiency.
+A linear regression model is chosen for several reasons. Primarily, it is an appropriate choice with the goal of predicting a continuous variable and having the ability to identify and explain the features most strongly associated with the critical temperature. Secondarily, a linear model is a good choice for computational efficiency.
 
 The target variable in a linear regression model is a linear combination of the input features.
 \[ y = m_0x_0 + m_1x_1 + \cdots + m_nx_n \text{ where } x_0 = 1 \text{ and } m_0 \text{ is the intercept.} \]
 Penalized linear regression models with different types of regularization are used as a tool to prevent overfitting. Penalty terms are added to the base loss function:
 \[ MSE = \frac{1}{n} \sum_{i=1}^{n} \left(Y_i - \sum_{j=0}^{k} m_j x_{ij}\right)^2 \]
-Here I compare LASSO, which uses a first-order L1 penalty term \( \lambda \sum_{j=0}^{k} |m_j| \) to Ridge regression with its second-order L2 penalty term \( \lambda \sum_{j=0}^{k} m_j^2 \). For interpretability of error in the model and to get a sense of its usefulness and practicality, I will also compute the root mean squared error (RMSE) from the chosen loss metric, mean squared error (MSE).
+Here I compare LASSO, which uses a first-order L1 penalty term \( \lambda \sum_{j=1}^{k} |m_j| \) to Ridge regression with its second-order L2 penalty term \( \lambda \sum_{j=1}^{k} m_j^2 \) (the intercept \( m_0 \) is not penalized). For interpretability of error in the model and to get a sense of its usefulness and practicality, I will also compute the root mean squared error (RMSE) from the chosen loss metric, mean squared error (MSE). In this report, \(\lambda\) is the alpha parameter in scikit-learn. scikit-learn scales the penalty differently for Lasso and Ridge, so \(\lambda\) values are not comparable between the two models.
 
 \section{Data}
 Many of the features in this dataset are different statistical metrics of the same general property. For example, \texttt{FusionHeat} the heat required to change a solid to a liquid, is represented by 10 features: mean, weighted mean, geometric mean, weighted geometric mean, entropy, weighted entropy, range, weighted range, standard deviation and weighted standard deviation. These likely are necessary to describe the material based on the different atoms in its composition. Generally, the middle fifty percent of all the features are roughly symmetric. Some categories of features have outliers, more high than low, and some are skewed, especially in their outer range. Boxplots of fusion heat (see Figure \ref{fig:fusionheat_boxplots}) and valence (see Figure \ref{fig:valence_boxplots}) are representative of variables with, respectively, smaller and larger ranges, greater and lesser skewness, and more and fewer outliers.
@@ -110,15 +110,15 @@ The distribution of the target variable, critical temperature, is right-skewed w
 	\label{fig:critTempLog_hist}
 \end{figure}
 
-Though some of the feature have outliers, more commonly high ones, none seem to be unusually abnormal or suggest an error in the data. Given that, and the fairly normal distribution of the data, particularly the reasonable symmetry within the interquartile ranges (IQR), I choose to stick with \texttt{StandardScaler}. I choose to scale only the numerical material property features and not to scale the vector encoded chemical formula features.
+Though some of the features have outliers, more commonly high ones, none seem to be unusually abnormal or suggest an error in the data. Given that, and the fairly normal distribution of the data, particularly the reasonable symmetry within the interquartile ranges (IQR), I choose to stick with \texttt{StandardScaler}. I scale only the material property features. I leave the element counts unscaled. They are already in the same units (number of atoms in the formula), and most of their values are zero, so z-scoring them would turn the few large counts into extreme values.
 
 \section{Modeling}
-Five-fold cross validation with a random shuffling of the data was used for hyperparameter tuning. The out-of-fold predictions were used to calculate the MSE. A manual grid search of the penalty term \(\lambda \) was performed for both LASSO and Ridge models, starting with a broad range of values to identify a region likely to optimize the loss. Using the lowest MSE, the best \(\lambda \) for each model was chosen from a second, narrower search. For LASSO, the \(\lambda \) values searched ranged from 0.5 to 10, focusing on smaller increments under 1, while for Ridge the values ranged from \(10^{-5}\) to \(10^{4}\) increasing by orders of magnitude with finer increments toward the upper end of that range.
-I also chose to tune an ElasticNet model as a comparison to the pure L1 or L2 regularization of the LASSO or Ridge models respectively. For ElasticNet a grid search was conducted for both the penalty term, \(\lambda \), with values in the range from  \(10^{-3}\) to \(10^{3}\), and for the L1 mixing term from 0.01 to 0.9, focusing for both hyperparameters particularly on the values between 0.01 and 0.1.
+Five-fold cross validation with a random shuffling of the data was used for hyperparameter tuning. Scaling was included in a pipeline with each model, so the scaler was refit on each training fold and the held-out fold never influenced it. The MSE was calculated on each held-out fold and averaged across the five folds; variability is reported as the sample standard deviation (\(n-1\)) of the five fold MSEs. A manual grid search of the penalty term \(\lambda \) was performed for both LASSO and Ridge models, starting with a broad range of values to identify a region likely to optimize the loss. Using the lowest MSE, the best \(\lambda \) for each model was chosen from a second, narrower search. For LASSO, the \(\lambda \) values searched ranged from 0.05 to 10, focusing on smaller increments under 1, while for Ridge the values ranged from \(10^{-5}\) to \(10^{4}\) increasing by orders of magnitude with finer increments toward the upper end of that range.
+I also chose to tune an ElasticNet model as a comparison to the pure L1 or L2 regularization of the LASSO or Ridge models respectively. For ElasticNet a grid search was conducted for both the penalty term, \(\lambda \), with values in the range from  \(10^{-3}\) to \(10^{3}\), and for the L1 mixing term from 0.01 to 0.9, followed by a narrower search of \(\lambda\) from 0.02 to 0.5 and the mixing term from 0.01 to 0.1.
 
 \section{Results}
 
-Tuning curves for the LASSO and Ridge models are shown in Figure \ref{fig:tuning_L1} and Figure \ref{fig:tuning_L2}, respectively. The estimated MSE on out-of-fold predictions for LASSO with an optimized \(\lambda \) of 0.34 was \( 332.03 \pm 16.00 \) (mean \(\pm\) standard deviation) and for Ridge regression with an optimized \(\lambda \) of 2000 was \( 333.28 \pm 25.46 \). 
+Tuning curves for the LASSO and Ridge models are shown in Figure \ref{fig:tuning_L1} and Figure \ref{fig:tuning_L2}, respectively. The estimated MSE on out-of-fold predictions for LASSO with an optimized \(\lambda \) of 0.34 was \( 332.04 \pm 17.89 \) (mean \(\pm\) sample standard deviation across folds) and for Ridge regression with an optimized \(\lambda \) of 2000 was \( 333.29 \pm 28.50 \). 
 
 \begin{figure}[h]
 	\centering
@@ -134,9 +134,9 @@ Tuning curves for the LASSO and Ridge models are shown in Figure \ref{fig:tuning
 	\label{fig:tuning_L2}
 \end{figure}
 
-The results of a narrowed range of the ElasticNet grid search can be seen in Figure \ref{fig:tuning_EN}. The estimated MSE on out-of-fold predictions for ElasticNet with an optimized \(\lambda \) of 0.1 and mixing term of 0.09 was \( 332.27 \pm 30.31 \). For comparison to all the regularized models, a ordinary least squares regression model yielded an MSE of \(  687.55 \pm 584.20 \).
+The results of a narrowed range of the ElasticNet grid search can be seen in Figure \ref{fig:tuning_EN}. The estimated MSE on out-of-fold predictions for ElasticNet with an optimized \(\lambda \) of 0.1 and mixing term of 0.09 was \( 332.27 \pm 33.93 \). For comparison to all the regularized models, an ordinary least squares regression model yielded an MSE of \( 687.55 \pm 653.16 \). The OLS fold MSEs ranged from 272 to 1,784, while the LASSO and Ridge fold MSEs stayed between 310 and 376. Two predictions, about $-2{,}500$ K and $-1{,}500$ K, account for most of the OLS error. Without them its RMSE is 16.8 K, slightly lower than the regularized models' 18.2 K.
 
-A plot of residuals versus the observed critical temperature values for both the LASSO and Ridge models display a slight upward trend and fan shape with a few extreme points, shown in Figure \ref{fig:residL1} and Figure \ref{fig:residL2}.
+A plot of residuals versus the observed critical temperature values for both the LASSO and Ridge models displays a slight upward trend and fan shape with a few extreme points, shown in Figure \ref{fig:residL1} and Figure \ref{fig:residL2}.
 
 \begin{figure}[h]
 	\centering
@@ -155,18 +155,18 @@ A plot of residuals versus the observed critical temperature values for both the
 \begin{figure}[h]
         \centering
         \includegraphics[width=0.85\textwidth]{figures/plt_residuals_L2.png}
-        \caption{Residuals of the predictions ploted versus the observed values show a slight upward trend and fan shape and a few extreme values.}
+        \caption{Residuals of the predictions plotted versus the observed values show a slight upward trend and fan shape and a few extreme values.}
 \label{fig:residL2}
 \end{figure}
 
-The most important properties and chemical components of superconductors identified by the LASSO model, which achieved the lowest MSE and smallest standard deviation, are listed in Table~\ref{table:lasso_coefficients} along with their coefficients, indicators of the importance and direction of their relationship with the target variable. Interestingly, the most important elements in the chemical makeup are Barium, Bismuth, and Calcium. Unsurprisingly, several of the metrics of thermal conductivity are important in predicting the conductive temperature of a material. The range of the atomic mass, and metrics of valence and electron affinity are also important features.
+The features with the largest coefficients in the LASSO model are listed in Table~\ref{table:lasso_coefficients}. I use the size of a coefficient (ignoring its sign) as the measure of feature importance: a larger coefficient means a larger change in predicted critical temperature for the same change in that feature, holding the other features fixed. The sign shows the direction of the association. The coefficients are not all on the same scale: property features were standardized, so their coefficients are the change in predicted critical temperature (K) per one standard deviation, while element coefficients are the change per atom of that element in the formula. Rankings across the two groups should be read with that in mind. Many features are also related measures of the same property, so individual rankings should be interpreted with caution. At this penalty, LASSO set 126 of the 167 coefficients to exactly zero (9 of these are elements that never appear in the data), keeping 41 features. Among the elements, Barium, Bismuth, and Calcium are the most important. Unsurprisingly, several of the metrics of thermal conductivity are important in predicting the critical temperature of a material. The range of the atomic mass, and metrics of valence and electron affinity are also important features.
 
 \FloatBarrier
-Table 3 contains the 10 most important features and their coefficients from the LASSO model.
+Table 3 contains the 10 most important features (largest coefficients) from the LASSO model.
 
 \begin{table}[h!]
     \centering
-    \captionof{table}{Most Important Features from the LASSO Model} 
+    \captionof{table}{Largest LASSO Coefficients (property features per SD, elements per atom)}
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Variable} & \textbf{Coefficient} \\ \hline \hline
@@ -184,13 +184,13 @@ Table 3 contains the 10 most important features and their coefficients from the 
     \label{table:lasso_coefficients}
 \end{table}
 
-The most important properties and chemical components of superconductors found using the Ridge regression model are listed in Table~\ref{table:ridge_coefficients} along with their coefficients. These ten features are the same as the top ten features from the LASSO model. Additionally, the signs of the relationship with the target variable, positive or negative are all also the same between the models. However, the variables rank slightly differently, and the coefficients are generally smaller in the Ridge model.
+The features with the largest coefficients in the Ridge regression model are listed in Table~\ref{table:ridge_coefficients} along with their coefficients. These ten features are the same as the top ten features from the LASSO model. Additionally, the signs of the relationship with the target variable, positive or negative, are all also the same between the models. However, the variables rank slightly differently, and most of the coefficients are smaller in the Ridge model (7 of the 10).
 
-Table 4 contains the 10 most important features and their coefficients from the Ridge regression model.
+Table 4 contains the 10 most important features (largest coefficients) from the Ridge regression model.
 
 \begin{table}[h!]
     \centering
-    \captionof{table}{Most Important Features from the Ridge Regression Model} 
+    \captionof{table}{Largest Ridge Coefficients (property features per SD, elements per atom)} 
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Variable} & \textbf{Coefficient} \\ \hline \hline
@@ -210,10 +210,10 @@ Table 4 contains the 10 most important features and their coefficients from the 
 
 \section{Conclusion}
 
-All three models which used regularization, Lasso, Ridge, and ElasticNet, achieved statistically equivalent results with similar cross-validated MSEs and overlapping standard deviations. There was little difference in computational efficiency with the exception of ElasticNet, which required tuning an additional parameter. Additionally, the optimum L1 ratio for ElasticNet was 0.09, meaning it is primarily using L1 rather than an balanced combination of L1 and L2 penalties. The LASSO model has a very slightly lower MSE and standard deviation than the others. The RMSEs of each regularization model, reflecting error in the original units, were all 18 Kelvin. In contrast, the unregularized linear regression model had a much higher error, an RMSE of 26 K, and larger variability than the other models.
+All three models which used regularization, Lasso, Ridge, and ElasticNet, performed about the same, with mean cross-validated MSEs within about 1 of each other and fold standard deviations of 18 to 34. There was little difference in computational efficiency with the exception of ElasticNet, which required tuning an additional parameter. Additionally, the optimum L1 ratio for ElasticNet was 0.09, meaning its penalty is about 91\% L2 and 9\% L1, so it behaves mostly like Ridge. The LASSO model had a very slightly lower mean MSE and standard deviation, but the differences are small relative to the fold-to-fold variation. The RMSEs of each regularization model, reflecting error in the original units, were all 18 Kelvin. In contrast, the unregularized linear regression model had a much higher error, an RMSE of 26 K, and larger variability than the other models.
 
 The trend and fan shape in the residual plots indicate potential heteroscedasticity in the errors. Although the log transformation did not eliminate the skewness in the target variable distribution, it may be worth revisiting the modeling process using the log-transformed variable to try to improve the variance in the residuals and better meet the assumptions of the model.
 
-The LASSO and Ridge models were consistent in their variable importance, with Barium and weighted mean of thermal conductivity being the most important features in determining the critical temperature.
+The LASSO and Ridge models were consistent in which features had the largest coefficients and in the signs of those coefficients. Barium (per atom) and the weighted mean of thermal conductivity (per standard deviation) were the most important features in both models. These are associations with critical temperature, not evidence that these features determine it.
 
 \end{document}
