@@ -10097,7 +10097,7 @@ memory usage: 14.3+ MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Instantiate a KFold class object to randomly shuffle the dataset in cv folds</span>
@@ -10169,6 +10169,24 @@ Alpha: 0.4, CV MSE: 334.9304
 Alpha: 0.3, CV MSE: 333.5229
 Alpha: 0.2, CV MSE: 349.0253
 Alpha: 0.1, CV MSE: 380.3579
+Alpha: 0.05, CV MSE: 427.1406
+-----------
+Tuning Ridge:
+Alpha: 1e-05, CV MSE: 687.5473
+Alpha: 0.0001, CV MSE: 687.5435
+Alpha: 0.001, CV MSE: 687.5056
+Alpha: 0.01, CV MSE: 687.1296
+Alpha: 0.1, CV MSE: 683.6269
+Alpha: 1.0, CV MSE: 661.7917
+Alpha: 10.0, CV MSE: 594.3821
+Alpha: 100.0, CV MSE: 439.3901
+Alpha: 1000.0, CV MSE: 334.2445
+Alpha: 10000.0, CV MSE: 373.9159
+-----------
+Tuning ElasticNet:
+Fitting 5 folds for each of 35 candidates, totalling 175 fits
+Best Alpha: 0.1 and Best L1 Ratio: 0.1
+Best CV MSE: 332.2750
 </pre>
 </div>
 </div>
@@ -10179,7 +10197,7 @@ Alpha: 0.1, CV MSE: 380.3579
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Print all the results for Elastic Net</span>
@@ -10244,7 +10262,7 @@ Alpha: 1000.0, L1 Ratio: 0.9, MSE: 1173.6463
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Get an intuition for the coefficients</span>
@@ -10299,7 +10317,7 @@ Alpha: 10000, Non-Zero Count: 158
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Fine-tune parameters</span>
@@ -10393,7 +10411,7 @@ Best CV MSE: 332.2749
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Print all the results for Elastic Net</span>
@@ -10470,7 +10488,7 @@ Alpha: 0.02, L1 Ratio: 0.010, MSE: 365.6734
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Sort results by alpha before plotting</span>
@@ -10540,7 +10558,7 @@ Alpha: 0.02, L1 Ratio: 0.010, MSE: 365.6734
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Convert cv_results_ to a DataFrame</span>
@@ -10619,7 +10637,7 @@ Alpha: 0.02, L1 Ratio: 0.010, MSE: 365.6734
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Repeat for the narrow grid search</span>
@@ -10712,7 +10730,7 @@ Alpha: 0.02, L1 Ratio: 0.010, MSE: 365.6734
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Set the best alpha and if applicable l1_ratio</span>
@@ -10806,7 +10824,7 @@ EN:    [315.7 344.5 308.9 386.5 305.8]
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Use cross_val_predict to get out of fold residuals</span>
@@ -10834,7 +10852,7 @@ EN:    [315.7 344.5 308.9 386.5 305.8]
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Plot: residuals vs actual target</span>
@@ -10918,7 +10936,7 @@ EN:    [315.7 344.5 308.9 386.5 305.8]
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># How much do two extreme predictions drive the OLS error?</span>
@@ -11013,7 +11031,7 @@ Ridge: 10.06
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Refit the models to get the coefficients</span>
@@ -11122,7 +11140,7 @@ Lasso zeros at alpha 0.34: 126 of 167 (9 are columns that are all zeros in the d
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Ridge tuning curve for the LinkedIn post (separate from the analysis above)</span>
@@ -11232,7 +11250,7 @@ Best alpha: 2000 | RMSE: 18.26
 <p>Regularization reduces overfitting by limiting how much a model can rely on any single variable. Ridge regression turns every variable’s influence down a little. Lasso regression turns some variables off completely, leaving a simpler model.</p>
 <p>With either method, the average error stayed about 18 to 19 degrees on every set of materials tested. Lasso did this with only 41 of the 167 variables.</p>
 <p>This is the bias-variance trade-off. A less flexible model can’t match every detail of its training data, so it gives up a little accuracy there (bias). In return, its predictions change much less from one set of data to the next (variance). Like a student who learned the main ideas, it may miss a few questions, but it does about as well on every test.</p>
-<h1 id="DataScience-%23MachineLearning-%23Statistics-%23Overfitting">DataScience #MachineLearning #Statistics #Overfitting<a class="anchor-link" href="#DataScience-%23MachineLearning-%23Statistics-%23Overfitting">¶</a></h1><h3 id="FIRST-COMMENT">FIRST COMMENT<a class="anchor-link" href="#FIRST-COMMENT">¶</a></h3><p>Data: Superconductivity Data, UCI Machine Learning Repository (Hamidieh, 2018). Temperatures are in Kelvin. “Average error” is the root mean squared error from 5-fold cross-validation. Ridge and lasso add an L2 and an L1 penalty on the coefficients, respectively, and the penalty strength was chosen by cross-validation. Without two extreme predictions, the standard model’s average error was about 17 degrees, slightly lower than the regularized models. Regularization’s benefit here was mainly limiting extreme predictions.</p>
+<h3 id="FIRST-COMMENT">FIRST COMMENT<a class="anchor-link" href="#FIRST-COMMENT">¶</a></h3><p>Data: Superconductivity Data, UCI Machine Learning Repository (Hamidieh, 2018). Temperatures are in Kelvin. “Average error” is the root mean squared error from 5-fold cross-validation. Ridge and lasso add an L2 and an L1 penalty on the coefficients, respectively, and the penalty strength was chosen by cross-validation. Without two extreme predictions, the standard model’s average error was about 17 degrees, slightly lower than the regularized models. Regularization’s benefit here was mainly limiting extreme predictions.</p>
 <p>Project (Problem #1, with report and notebook): <a href="https://kdhenderson.github.io/projects/AppliedMLCaseStudies/">https://kdhenderson.github.io/projects/AppliedMLCaseStudies/</a></p>
 <p>Stats Notes, Applied Chapter 2 (bias-variance trade-off and penalized regression): <a href="https://kdhenderson.github.io/stats-notes-for-ds/applied-chapter02.html">https://kdhenderson.github.io/stats-notes-for-ds/applied-chapter02.html</a></p>
 </div>
